@@ -2,6 +2,7 @@ package com.kouskefil.microservices.product.Controllers;
 
 import Model.Product;
 import com.kouskefil.microservices.product.DTO.ProductRequest;
+import com.kouskefil.microservices.product.DTO.ProductResponse;
 import com.kouskefil.microservices.product.Services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,13 +18,13 @@ public class ProductController {
     private final ProductService productService;
     @RequestMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product createProduct(@RequestBody ProductRequest productRequest) {
+    public ProductResponse createProduct(@RequestBody ProductRequest productRequest) {
         return productService.createProduct(productRequest);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Product> getAllProducts() {
+    public List<ProductResponse> getAllProducts() {
         return productService.getAllProducts();
     }
 }

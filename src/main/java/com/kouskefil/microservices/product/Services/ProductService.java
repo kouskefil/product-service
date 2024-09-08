@@ -1,6 +1,7 @@
 package com.kouskefil.microservices.product.Services;
 
 import Model.Product;
+import com.kouskefil.microservices.product.DTO.ProductResponse;
 import com.kouskefil.microservices.product.Repositories.ProductRepository;
 import com.kouskefil.microservices.product.DTO.ProductRequest;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     @PostMapping
-    public Product createProduct(ProductRequest productRequest) {
+    public ProductResponse createProduct(ProductRequest productRequest) {
         Product product = Product.builder()
                 .name(productRequest.name())
                 .description(productRequest.description())
@@ -25,11 +26,21 @@ public class ProductService {
                 .build();
          productRepository.save(product);
          log.info("Product {} is saved", product.getId());
-        return product;
+        return new ProductResponse(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice());
     }
 
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<ProductResponse> getAllProducts() {
+        return productRepository.findAll().stream()
+                .map(product -> new ProductResponse(
+                        product.getId(),
+                        product.getName(),
+                        product.getDescription(),
+                        product.getPrice()))
+                .toList();
     }
 }

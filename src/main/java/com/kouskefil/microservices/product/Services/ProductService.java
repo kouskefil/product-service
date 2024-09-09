@@ -1,6 +1,6 @@
 package com.kouskefil.microservices.product.Services;
 
-import Model.Product;
+import com.kouskefil.microservices.product.Model.Product;
 import com.kouskefil.microservices.product.DTO.ProductResponse;
 import com.kouskefil.microservices.product.Repositories.ProductRepository;
 import com.kouskefil.microservices.product.DTO.ProductRequest;
@@ -25,7 +25,7 @@ public class ProductService {
                 .price(productRequest.price())
                 .build();
          productRepository.save(product);
-         log.info("Product {} is saved", product.getId());
+         log.info("Product {} is saved successfully", product.getId());
         return new ProductResponse(
                 product.getId(),
                 product.getName(),

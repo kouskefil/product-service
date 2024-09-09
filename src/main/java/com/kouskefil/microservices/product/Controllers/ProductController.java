@@ -1,6 +1,5 @@
 package com.kouskefil.microservices.product.Controllers;
 
-import Model.Product;
 import com.kouskefil.microservices.product.DTO.ProductRequest;
 import com.kouskefil.microservices.product.DTO.ProductResponse;
 import com.kouskefil.microservices.product.Services.ProductService;

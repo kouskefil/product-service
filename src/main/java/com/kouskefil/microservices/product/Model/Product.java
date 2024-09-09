@@ -1,4 +1,4 @@
-package Model;
+package com.kouskefil.microservices.product.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
